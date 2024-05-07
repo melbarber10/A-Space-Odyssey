@@ -153,7 +153,7 @@ class HomePage extends StatelessWidget {
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.view_comfy_alt),
+          icon: Icon(Icons.view_agenda),
           label: 'About',
         ),
         BottomNavigationBarItem(
