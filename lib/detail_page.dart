@@ -20,7 +20,7 @@ class DetailPage extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/background.jpg'), // Adjust path as needed
+            image: AssetImage('images/background.jpg'),
             fit: BoxFit.fill,
           ),
         ),

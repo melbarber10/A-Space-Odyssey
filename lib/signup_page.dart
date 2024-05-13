@@ -9,7 +9,6 @@ class SignUpPage extends StatelessWidget {
   final TextEditingController passwordController = TextEditingController();
 
   Future<void> signUp(BuildContext context) async {
-    // Validation for empty fields
     if (firstNameController.text.isEmpty ||
         lastNameController.text.isEmpty ||
         emailController.text.isEmpty ||
@@ -26,7 +25,6 @@ class SignUpPage extends StatelessWidget {
       return;
     }
 
-    // Validation for password length
     if (passwordController.text.length < 4) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -40,7 +38,6 @@ class SignUpPage extends StatelessWidget {
       return;
     }
 
-    // Validation for email format
     final emailPattern = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
     if (!emailPattern.hasMatch(emailController.text)) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -71,14 +68,13 @@ class SignUpPage extends StatelessWidget {
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       if (data['message'] != null) {
-        // Sign up successful
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text(
               'Sign up successful. You can now log in.',
               style: TextStyle(color: Colors.white),
             ),
-            backgroundColor: Colors.green, // Adjust color as needed
+            backgroundColor: Colors.green,
           ),
         );
         Navigator.pushReplacementNamed(context, '/login');
@@ -90,19 +86,18 @@ class SignUpPage extends StatelessWidget {
               'Sign up failed: ${data['error']}',
               style: const TextStyle(color: Colors.white),
             ),
-            backgroundColor: Colors.red, // Adjust color as needed
+            backgroundColor: Colors.red,
           ),
         );
       }
     } else {
-      // Handle server error
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
             'Error: ${response.reasonPhrase}',
             style: const TextStyle(color: Colors.white),
           ),
-          backgroundColor: Colors.red, // Adjust color as needed
+          backgroundColor: Colors.red,
         ),
       );
     }
@@ -125,7 +120,6 @@ class SignUpPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // A SPACE ODYSSEY text
                 const SizedBox(height: 100.0),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -218,7 +212,7 @@ class SignUpPage extends StatelessWidget {
                 const SizedBox(height: 24.0),
                 ElevatedButton(
                   onPressed: () {
-                    signUp(context); // Call the signUp function
+                    signUp(context);
                   },
                   child: const Text(
                     'Sign Up',

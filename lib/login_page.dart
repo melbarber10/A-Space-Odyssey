@@ -22,12 +22,10 @@ class LoginPage extends StatelessWidget {
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       if (data['message'] != null) {
-        // Login successful
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('id', data['userId']); // Save user ID
         Navigator.pushReplacementNamed(context, '/home');
       } else {
-        // Login failed
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.black,
@@ -39,7 +37,6 @@ class LoginPage extends StatelessWidget {
         );
       }
     } else {
-      // Handle server error
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.black,
@@ -68,7 +65,6 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Image and text row
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -89,7 +85,6 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 45.0),
-              // Email text field
               TextFormField(
                 controller: emailController,
                 decoration: const InputDecoration(
@@ -107,7 +102,6 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30.0),
-              // Password text field
               TextFormField(
                 controller: passwordController,
                 obscureText: true,
@@ -126,10 +120,9 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 44.0),
-              // Login button
               ElevatedButton(
                 onPressed: () {
-                  login(context); // Call the login function
+                  login(context);
                 },
                 child: const Text(
                   'Login',
@@ -144,7 +137,6 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 26.0),
-              // Sign up button
               TextButton(
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, '/signup');

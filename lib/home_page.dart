@@ -5,8 +5,10 @@ import './data/planets.dart';
 import './data/galaxies.dart';
 import './data/space_missions.dart';
 import './data/stars.dart';
-import 'package:shared_preferences/shared_preferences.dart'; // Import SharedPreferences
-import 'login_page.dart'; // Import the login page
+import 'package:shared_preferences/shared_preferences.dart';
+import 'login_page.dart';
+import 'about_page.dart';
+import 'profile_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -47,20 +49,15 @@ class HomePage extends StatelessWidget {
             },
           ),
           IconButton(
-            // Add this IconButton for logout
             color: Colors.white,
             icon: const Icon(Icons.logout),
             onPressed: () async {
               SharedPreferences prefs = await SharedPreferences.getInstance();
-              // Clear the userId from SharedPreferences
               prefs.remove('userId');
-              // Navigate to the login page
               Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        LoginPage()), // Navigate to login page
-                (route) => false, // Remove all routes until login page
+                MaterialPageRoute(builder: (context) => LoginPage()),
+                (route) => false,
               );
             },
           ),
@@ -147,20 +144,35 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.view_agenda),
-          label: 'About',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Profile',
-        ),
-      ]),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.view_comfy_alt),
+            label: 'About',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+        onTap: (index) {
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AboutPage()),
+            );
+          } else if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfilePage()),
+            );
+          }
+        },
+      ),
     );
   }
 }
