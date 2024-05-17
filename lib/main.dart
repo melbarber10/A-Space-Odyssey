@@ -9,6 +9,7 @@ late SharedPreferences sharedPref;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPref = await SharedPreferences.getInstance();
+
   runApp(const SpaceOdysseyApp());
 }
 
