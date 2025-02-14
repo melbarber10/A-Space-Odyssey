@@ -68,7 +68,7 @@ class _AboutPageState extends State<AboutPage>
             fit: BoxFit.cover,
           ),
         ),
-        child: Center(
+        child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
