@@ -49,6 +49,7 @@ A-Space-Odyssey/
 ├── sql/              # SQL scripts for database setup
 ├── web/              # Web platform-specific files (if using Flutter web)
 ├── windows/          # Windows platform-specific files
+├── images/           # Folders for the application images
 ├── pubspec.yaml      # Flutter dependencies
 ├── README.md         # You're looking at it
 └── .gitignore        # Ignored files/folders (build artifacts, etc.)
